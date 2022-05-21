@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Acom</string>
+    <string name="api_default_error">Có lỗi xảy ra</string>
+    <string name="api_retry_error">Vui lòng thử lại</string>
+    <string name="str_authe">Tài khoản không hợp lệ/Nhập sai mật khẩu</string>
+    <string name="text_all_has_error_please_try">Có lỗi xảy ra, vui lòng thử lại!</string>
+    <string name="text_all_has_error_timeout">Kết nối thất bại!</string>
+    <string name="text_all_has_error_network">Lỗi kết nối mạng!</string>
+    <string name="facebook_app_id" translatable="false">833647787184360</string>
+    <string name="str_statistic">Thống kê</string>
+    <string name="str_news">Tin tức</string>
+    <string name="str_home">Nhà Hàng</string>
+    <string name="str_menu">Thực đơn</string>
+    <string name="str_user">Quản lý</string>
+    <string name="str_login">Đăng nhập</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="str_forgot_pass">Quên mật khẩu?</string>
+    <string name="str_or">Hoặc</string>
+    <string name="str_sign_up">Đăng ký</string>
+
+
+
+</resources>
