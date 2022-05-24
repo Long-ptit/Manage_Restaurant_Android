@@ -60,8 +60,8 @@ class LoginActivity : BaseActivity<LoginViewModel, LayoutLoginBinding>() {
 //        }
         binding.btnLogin.setOnClickListener {
             var restaurant: Restaurant = Restaurant();
-            restaurant.username = "1"
-            restaurant.password = "1"
+            restaurant.username = "oanhcoi"
+            restaurant.password = "123456"
             viewModel.getRestarant(restaurant)
         }
     }

@@ -8,8 +8,10 @@ import restaurant.exam.R
 import com.restaurant.exam.injection.DaggerViewModelInjector
 import com.restaurant.exam.injection.NetworkModule
 import com.restaurant.exam.injection.ViewModelInjector
+import com.restaurant.exam.ui.add_food_table.AddFoodTableViewModel
 import com.restaurant.exam.ui.home.HomeViewModel
 import com.restaurant.exam.ui.main.MainViewModel
+import com.restaurant.exam.ui.table.DetailTableViewModel
 import com.restaurant.exam.utils.myapp
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -41,6 +43,8 @@ abstract class BaseViewModel : ViewModel() {
             is MainViewModel -> injector.inject(this)
             is HomeViewModel -> injector.inject(this)
             is LoginViewModel -> injector.inject(this)
+            is DetailTableViewModel -> injector.inject(this)
+            is AddFoodTableViewModel -> injector.inject(this)
         }
     }
 

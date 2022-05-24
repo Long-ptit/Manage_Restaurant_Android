@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_password" />
-                            <entry key="sourceFile" value="C:\Users\Nong\Desktop\ImageAndroid\ManageRestaurant\password.svg" />
+                            <entry key="outputName" value="ic_add_food" />
+                            <entry key="sourceFile" value="D:\Android\image\ic_add_food.svg" />
                           </map>
                         </option>
                       </PersistentState>

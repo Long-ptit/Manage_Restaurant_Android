@@ -1,8 +1,10 @@
 package com.restaurant.exam.injection
 
+import com.restaurant.exam.ui.add_food_table.AddFoodTableViewModel
 import com.restaurant.exam.ui.login.LoginViewModel
 import com.restaurant.exam.ui.home.HomeViewModel
 import com.restaurant.exam.ui.main.MainViewModel
+import com.restaurant.exam.ui.table.DetailTableViewModel
 import dagger.Component
 
 /**
@@ -18,6 +20,8 @@ interface ViewModelInjector {
     fun inject(mainViewModel: MainViewModel)
     fun inject(homeViewModel: HomeViewModel)
     fun inject(loginViewModel: LoginViewModel)
+    fun inject(detailViewModel: DetailTableViewModel)
+    fun inject(addFoodTableViewModel: AddFoodTableViewModel)
     @Component.Builder
     interface Builder {
         fun build(): ViewModelInjector

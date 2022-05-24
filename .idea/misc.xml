@@ -4,6 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../layout/custom_preview.xml" value="0.18177083333333333" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/drawable/bg_table_item.xml" value="0.2015" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/fragment_news.xml" value="0.2361111111111111" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/item_floor.xml" value="0.6" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/item_food_add.xml" value="0.264" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/item_food_table.xml" value="0.2" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/item_table.xml" value="0.32225063938618925" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/layout_add_food_table.xml" value="0.2111111111111111" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/layout_detail_table.xml" value="0.2453125" />
+        <entry key="..\:/Android/ProjectAndroid/Manage_Restaurant/app/src/main/res/layout/layout_login.xml" value="0.176" />
         <entry key="..\:/Android/ProjectAndroid/acom-android/app/src/main/res/drawable/bg_text_input.xml" value="0.195" />
         <entry key="..\:/Android/ProjectAndroid/acom-android/app/src/main/res/drawable/ic_user_select.xml" value="0.1205" />
         <entry key="..\:/Android/ProjectAndroid/acom-android/app/src/main/res/layout/activity_login.xml" value="0.264" />

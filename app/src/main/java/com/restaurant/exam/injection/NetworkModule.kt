@@ -61,7 +61,7 @@ object NetworkModule {
         }
 
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.251:8080/")
+            .baseUrl("http://192.168.1.5:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .client(httpClient.build())

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.stfalcon:frescoimageviewer:0.5.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d49bb25a16f82cee769d24ed27c9ebf5/transformed/jetified-frescoimageviewer-0.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d49bb25a16f82cee769d24ed27c9ebf5/transformed/jetified-frescoimageviewer-0.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d49bb25a16f82cee769d24ed27c9ebf5/transformed/jetified-frescoimageviewer-0.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bcdfe8131bcee2f7809e8e4e06d809d6/transformed/jetified-frescoimageviewer-0.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bcdfe8131bcee2f7809e8e4e06d809d6/transformed/jetified-frescoimageviewer-0.5.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bcdfe8131bcee2f7809e8e4e06d809d6/transformed/jetified-frescoimageviewer-0.5.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stfalcon/frescoimageviewer/0.5.0/614f973861c09e51de82d778a8edf14997124783/frescoimageviewer-0.5.0-javadoc.jar!/" />
