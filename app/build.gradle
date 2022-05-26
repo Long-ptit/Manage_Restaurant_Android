@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.restaurant.exam"
-        minSdkVersion 16
+        minSdk 19
         targetSdkVersion 32
         versionCode 1
         versionName "1.0"
@@ -178,5 +178,6 @@ dependencies {
 
     //calendar
     implementation 'com.github.prolificinteractive:material-calendarview:1.6.0'
+    implementation 'com.github.zhpanvip:bannerviewpager:3.5.5'
 
 }

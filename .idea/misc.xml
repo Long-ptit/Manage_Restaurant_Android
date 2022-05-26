@@ -56,11 +56,15 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.19947916666666668" />
+        <entry key="app/src/main/res/layout/fragment_news_list.xml" value="0.3854166666666667" />
         <entry key="app/src/main/res/layout/fragment_order.xml" value="0.3201812744140625" />
         <entry key="app/src/main/res/layout/fragment_product.xml" value="0.37552083333333336" />
         <entry key="app/src/main/res/layout/fragment_statistic.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.37552083333333336" />
         <entry key="app/src/main/res/layout/fragment_wishlist.xml" value="0.37552083333333336" />
+        <entry key="app/src/main/res/layout/item_banner.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/item_news.xml" value="0.3854166666666667" />
+        <entry key="app/src/main/res/layout/item_order.xml" value="0.3854166666666667" />
         <entry key="app/src/main/res/layout/item_product.xml" value="0.22864583333333333" />
         <entry key="app/src/main/res/layout/layout_error_dialog.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/layout_login.xml" value="0.1" />
