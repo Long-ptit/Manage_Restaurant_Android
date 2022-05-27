@@ -33,6 +33,21 @@
             android:exported="false">
         </activity>
         <activity
+            android:name="com.restaurant.exam.ui.table.DetailTableActivity"
+            android:exported="false">
+        </activity>
+
+
+        <activity
+            android:name="com.restaurant.exam.ui.add_food_table.AddFoodTableActivity"
+            android:exported="false">
+
+        </activity>
+<!--        <activity-->
+<!--            android:name=".ui.login.LoginActivity"-->
+<!--            android:exported="false">-->
+<!--        </activity>-->
+        <activity
             android:name="com.restaurant.exam.ui.main.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
