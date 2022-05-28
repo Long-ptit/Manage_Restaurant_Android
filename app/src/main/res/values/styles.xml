@@ -27,4 +27,9 @@
         <item name="fontFamily">@font/bevietnampro_medium</item>
         <item name="android:fontFamily">@font/bevietnampro_medium</item>
     </style>
+
+    <style name="DialogCustomTheme" parent="android:Theme.Holo.Dialog.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
 </resources>

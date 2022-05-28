@@ -9,17 +9,22 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.restaurant.exam.data.model.Floor
-import com.restaurant.exam.data.model.Restaurant
-import com.restaurant.exam.data.model.TableFirebase
+import com.restaurant.exam.data.DataManager
+import com.restaurant.exam.data.model.*
 import com.restaurant.exam.network.Api
+import com.restaurant.exam.utils.*
 import com.restaurant.exam.view_model.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeViewModel : BaseViewModel() {
-    val database = Firebase.database("https://restaurant-dd83b-default-rtdb.firebaseio.com/").reference
+
+    @Inject
+    lateinit var dataManager: DataManager
+
+    val database = Firebase.database(URL_FIREBASE).reference
+
     @Inject
     lateinit var api: Api
     var valueEventListener: ValueEventListener? = null
@@ -34,12 +39,16 @@ class HomeViewModel : BaseViewModel() {
             }
     }
 
-    fun getTable(id: Int, callbackSuccess: (list: ArrayList<TableFirebase>) -> Unit){
+    fun getTable(id: Int, callbackSuccess: (list: ArrayList<TableFirebase>) -> Unit) {
         if (valueEventListener != null && tableDatabase != null) {
             tableDatabase!!.removeEventListener(valueEventListener!!)
             Log.d("ptit", "delete: ")
         }
-        tableDatabase = database.child("restaurant").child("1").child(id.toString())
+        tableDatabase = database
+            .child(RESTAURANT)
+            .child(dataManager.getInt(PREF_RESTAURANT_ID)
+                .toString())
+            .child(id.toString())
 
         valueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -60,7 +69,9 @@ class HomeViewModel : BaseViewModel() {
         tableDatabase!!.addValueEventListener(valueEventListener!!)
     }
 
+
     val floorResponse = MutableLiveData<List<Floor>>()
+
     @SuppressLint("CheckResult")
     fun getFloorByRes(id: Int) {
         api.getFloor(id)
@@ -83,4 +94,50 @@ class HomeViewModel : BaseViewModel() {
                 }
             )
     }
+
+    fun getIdRes(): Int {
+        return dataManager.getInt(PREF_RESTAURANT_ID)
+    }
+
+    val listFoodResponse = MutableLiveData<List<Food>>()
+    @SuppressLint("CheckResult")
+    fun getAllFood() {
+        api.getFood(dataManager.getInt(PREF_RESTAURANT_ID))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onRetrievePostListStart() }
+            .doOnTerminate { onRetrievePostListFinish() }
+            .subscribe(
+                { result ->
+                    if (result != null) {
+//                        result.data?.id?.let { dataManager.save(PREF_USER_ID, it) }
+//                        dataManager.save(PREF_USER_NAME, result.username)
+//                        result.id?.let { dataManager.save(PREF_USER_ID, it) }
+//                        result.restaurant?.id?.let { dataManager.save(PREF_RESTAURANT_ID, it) }
+                    }
+                    listFoodResponse.postValue(result)
+                },
+                { throwable ->
+                    handleApiError(throwable)
+                }
+            )
+    }
+
+    fun checkIsStaff() : Boolean {
+        return dataManager.getString(PREF_USER_ROLE).equals("nhanvien")
+    }
+
+    fun logout() {
+        dataManager.remove(PREF_USER_NAME)
+        dataManager.remove(PREF_PHONE_NUMBER)
+        dataManager.remove(PREF_ADDRESS)
+        dataManager.remove(PREF_USER_ID)
+        dataManager.remove(PREF_USER_ROLE)
+
+
+//        initSubscribeToTopic()
+    }
+
+
+
 }

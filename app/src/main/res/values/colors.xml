@@ -46,5 +46,8 @@
     <color name="color_forgot_pass">#5D5FEF</color>
     <color name="color_sign_up">#568FFE</color>
 
+    <color name="color_unchecked_table">#C4C4C4</color>
+    <color name="color_checked_table">#2FCA5A</color>
+    <color name="color_add_table">#A5A6F6</color>
 
 </resources>

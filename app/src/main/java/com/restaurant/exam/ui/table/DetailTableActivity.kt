@@ -2,23 +2,23 @@ package com.restaurant.exam.ui.table
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.restaurant.exam.base.BaseActivity
-import com.restaurant.exam.data.model.Floor
-import com.restaurant.exam.data.model.FoodFirebase
-import com.restaurant.exam.data.model.Restaurant
+import com.restaurant.exam.data.model.*
 import com.restaurant.exam.ui.add_food_table.AddFoodTableActivity
-import com.restaurant.exam.ui.home.adapter.TableAdapter
-import com.restaurant.exam.ui.login.LoginViewModel
+import com.restaurant.exam.ui.confirm_bill.ConfirmActivity
 import com.restaurant.exam.ui.table.adapter.FoodInTableAdapter
+import com.restaurant.exam.utils.PREF_RESTAURANT_ID
+import com.restaurant.exam.utils.PREF_USER_ID
 import com.restaurant.exam.utils.recycleview_utils.GridSpacingItemDecoration
 import com.restaurant.exam.view_model.ViewModelFactory
 import restaurant.exam.R
 import restaurant.exam.databinding.LayoutDetailTableBinding
-import restaurant.exam.databinding.LayoutLoginBinding
+import java.io.Serializable
 
 class DetailTableActivity : BaseActivity<DetailTableViewModel, LayoutDetailTableBinding>(), FoodInTableAdapter.IClick {
 
@@ -29,6 +29,11 @@ class DetailTableActivity : BaseActivity<DetailTableViewModel, LayoutDetailTable
             return Intent(context, DetailTableActivity::class.java)
         }
     }
+    var listFood = arrayListOf<Food>()
+    var idFloor: Int = 0
+    var idTable = 0
+    var sumMoney = 0
+
 
     private lateinit var mAdapter : FoodInTableAdapter
 
@@ -37,21 +42,23 @@ class DetailTableActivity : BaseActivity<DetailTableViewModel, LayoutDetailTable
     }
 
     override fun observerLiveData() {
-//        viewModel.apply {
-//            loginResponse.observe(this@LoginActivity, androidx.lifecycle.Observer {
-//                if (it != null) {
-//                    showError(it.status)
-//                    if (it.data != null) {
-//                        startActivity(MainActivity.getIntent(this@LoginActivity))
-//                        finish()
-//                    }
-//                }
-//            })
-//        }
+        viewModel.apply {
+            saveResponse.observe(this@DetailTableActivity, androidx.lifecycle.Observer {
+                if (it != null) {
+                   viewModel.deleteCart(idFloor, idTable)
+                }
+            })
+        }
     }
 
     override fun initView() {
         showError = true
+
+        if (intent.hasExtra("id_floor")) {
+            idFloor  = intent.getIntExtra("id_floor", 0)
+            idTable  = intent.getIntExtra("id_table", 0)
+        }
+
         mAdapter = FoodInTableAdapter(this)
 
         val mLayoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 3)
@@ -67,49 +74,49 @@ class DetailTableActivity : BaseActivity<DetailTableViewModel, LayoutDetailTable
                 0
             )
         )
-        mAdapter.setList(getList())
-        viewModel.getObserveDetailTable(1) {
-            mAdapter.setList(it as ArrayList<FoodFirebase>)
+        viewModel.getObserveDetailTable(idTable, idFloor, idTable) {
+            mAdapter.setList(it)
+            listFood = it
+            sumMoney = 0
+            listFood.forEach {
+                sumMoney += it.quantity*(it.price)
+            }
+            binding.tvSumMoney.text = sumMoney.toString()
         }
     }
 
-    fun getList(): ArrayList<FoodFirebase> {
-        var list = arrayListOf<FoodFirebase>()
-        list.add(FoodFirebase(name = "Thịt chó"))
-        list.add(FoodFirebase(name = "Thịt chó"))
-        list.add(FoodFirebase(name = "Thịt chó"))
-        list.add(FoodFirebase(name = "Thịt chó"))
-
-        return list
-    }
-
     override fun initListener() {
-//        CommonUtils.pushDownClickAnimation(0.9F, binding.tvSignUp) {
-//            startActivity(SignUpActivity.getIntent(this))
-//        }
-//        CommonUtils.pushDownClickAnimation(0.9F, binding.btnLogin) {
-//            if (binding.edtEmail.text.isNotEmpty() && binding.edtPassword.text.isNotEmpty()) {
-//                val loginRequest = LoginRequest(binding.edtEmail.text.toString(), binding.edtPassword.text.toString())
-//                viewModel.login(loginRequest)
-//            }
-//            else {
-//                showError(getString(R.string.str_alert))
-//            }
-//        }
-//        CommonUtils.pushDownClickAnimation(0.9f, binding.btnBack) {
-//            onBackPressed()
-//        }
+        binding.btnConfirm.setOnClickListener {
+//            showError("Go to confirm bill")
+//            var intent =  Intent(
+//                this,
+//                ConfirmActivity::class.java
+//            )
+//            intent.putExtra("list", listFood as Serializable)
+//            startActivity(intent)
+            val foodBill = FoodBill()
+            foodBill.data = listFood
+            foodBill.bill = Bill(
+                totalPrice = sumMoney,
+                restaurant = Restaurant(viewModel.dataManager.getInt(PREF_RESTAURANT_ID)),
+                staff = Staff(viewModel.dataManager.getInt(PREF_USER_ID))
+            )
+            viewModel.save(foodBill)
+            finish()
+        }
     }
 
     override fun initViewModel() {
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[DetailTableViewModel::class.java]
     }
 
-    override fun onClick(food: FoodFirebase) {
+    override fun onClick(food: Food) {
         var intent =  Intent(
         this,
         AddFoodTableActivity::class.java
     )
+        intent.putExtra("id_floor", idFloor)
+        intent.putExtra("id_table", idTable)
         startActivity(intent)
     }
 

@@ -1,44 +1,50 @@
 package com.restaurant.exam.ui.table.adapter
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.restaurant.exam.data.model.Floor
-import com.restaurant.exam.data.model.FoodFirebase
-import restaurant.exam.databinding.ItemFloorBinding
+import com.restaurant.exam.data.model.Food
 import restaurant.exam.databinding.ItemFoodTableBinding
 
 class FoodInTableAdapter(val click: IClick) : RecyclerView.Adapter<FoodInTableAdapter.ViewHolder>() {
-    var listFood = arrayListOf<FoodFirebase>()
-    fun setList(listFood: ArrayList<FoodFirebase>) {
-        this.listFood = arrayListOf<FoodFirebase>()
-        this.listFood = listFood
-        this.listFood.add(FoodFirebase())
+    var listFood = arrayListOf<Food>()
+    fun setList(listFood: ArrayList<Food>) {
+        this.listFood = arrayListOf<Food>()
+        this.listFood.addAll(listFood)
+        this.listFood.add(Food())
         Log.d("ptit", "size: " + this.listFood.size)
         notifyDataSetChanged()
     }
     inner class ViewHolder(val binding: ItemFoodTableBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun fillData(data: FoodFirebase, position: Int){
+        @SuppressLint("SetTextI18n")
+        fun fillData(data: Food, position: Int){
             Log.d("ptit", "fillData: " + position)
-            when(position) {
-                listFood.size - 1 -> {
-                    binding.layoutAddFood.visibility = View.VISIBLE
-                    binding.layoutAddFood.setOnClickListener {
-                        click.onClick(data)
-                    }
+
+            if (position == listFood.size - 1) {
+                binding.layoutAddFood.visibility = View.VISIBLE
+                binding.layoutFood.visibility = View.GONE
+                binding.layoutAddFood.setOnClickListener {
+                    click.onClick(data)
                 }
-                else -> binding.layoutFood.visibility = View.VISIBLE
+            } else {
+                binding.tvPrice.text = data.price.toString()
+                binding.tvQuantity.text = "x" + data.quantity.toString()
+                binding.tvName.text = data.name
+                binding.layoutFood.visibility = View.VISIBLE
+                binding.layoutAddFood.visibility = View.GONE
             }
-            binding.tvName.text = data.name
 //            itemView.setOnClickListener {
 //                Log.d("ptit", "fillData: " + data.name)
 //                click.onClick(data)
 //            }
         }
     }
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemFoodTableBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -58,6 +64,6 @@ class FoodInTableAdapter(val click: IClick) : RecyclerView.Adapter<FoodInTableAd
     }
 
     interface IClick {
-        fun onClick(food: FoodFirebase)
+        fun onClick(food: Food)
     }
 }

@@ -1,5 +1,7 @@
 package com.restaurant.exam.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
@@ -20,6 +22,13 @@ import com.restaurant.exam.view_model.ViewModelFactory
 class MainActivity : BaseActivity<MainViewModel, LayoutMainBinding>(), BottomNavigationView.OnNavigationItemSelectedListener{
     private lateinit var mPagerAdapter : PagerFragmentAdapter
 
+    companion object {
+        fun getIntent(
+            context: Context
+        ): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
+    }
     override fun getContentLayout(): Int {
         return R.layout.layout_main
     }

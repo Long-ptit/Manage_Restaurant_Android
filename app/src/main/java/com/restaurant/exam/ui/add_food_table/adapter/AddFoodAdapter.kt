@@ -7,19 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.restaurant.exam.data.model.Food
-import com.restaurant.exam.data.model.FoodFirebase
 import restaurant.exam.databinding.ItemFoodAddBinding
-import restaurant.exam.databinding.ItemFoodTableBinding
 
 class AddFoodAdapter(val click: IClick) : RecyclerView.Adapter<AddFoodAdapter.ViewHolder>() {
     var listFood = arrayListOf<Food>()
     fun setList(listFood: ArrayList<Food>) {
-        this.listFood = listFood
+        this.listFood = arrayListOf()
+        this.listFood.addAll(listFood)
         notifyDataSetChanged()
     }
     inner class ViewHolder(val binding: ItemFoodAddBinding) : RecyclerView.ViewHolder(binding.root) {
         fun fillData(data: Food, position: Int){
             Log.d("ptit", "fillData: " + position)
+            binding.tvTitle.text = data.name
+            binding.tvPrice.text = data.price.toString()
+
             binding.layout.setOnClickListener {
                 if (data.isSelected) {
                     binding.layout.setCardBackgroundColor(Color.RED)
@@ -35,12 +37,12 @@ class AddFoodAdapter(val click: IClick) : RecyclerView.Adapter<AddFoodAdapter.Vi
                 }
             }
             binding.btnAdd.setOnClickListener {
-                listFood.get(position).quantity = listFood.get(position).quantity?.plus(1)
+                listFood.get(position).quantity = listFood.get(position).quantity.plus(1)
                 binding.tvQuantity.text = listFood.get(position).quantity.toString()
             }
 
             binding.btnSub.setOnClickListener {
-                listFood.get(position).quantity = listFood.get(position).quantity?.minus(1)
+                listFood.get(position).quantity = listFood.get(position).quantity.minus(1)
                 binding.tvQuantity.text = listFood.get(position).quantity.toString()
             }
         }
@@ -56,6 +58,20 @@ class AddFoodAdapter(val click: IClick) : RecyclerView.Adapter<AddFoodAdapter.Vi
             Log.d("ptit", "onBindViewHolder: " + position)
             fillData(food, position)
         }
+    }
+
+    fun checkFab(): Boolean{
+        listFood.forEach {
+            if (it.isSelected) return true
+        }
+        return false;
+    }
+
+    fun getList(): ArrayList<Food> {
+        var listResult = ArrayList<Food>()
+        listResult.addAll(listFood)
+       listResult.removeAll { !it.isSelected }
+        return listResult
     }
 
     override fun getItemCount(): Int {

@@ -26,10 +26,6 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute" >
 
         <activity
-            android:name="com.restaurant.exam.ui.splash.SplashActivity"
-            android:exported="false">
-        </activity>
-        <activity
             android:name="com.restaurant.exam.ui.table.DetailTableActivity"
             android:exported="false">
         </activity>
@@ -40,7 +36,61 @@
         </activity>
 
         <activity
+            android:name="com.restaurant.exam.ui.manage_staff.AddStaffActivity"
+            android:exported="false">
+
+        </activity>
+
+
+        <activity
             android:name="com.restaurant.exam.ui.add_food_table.AddFoodTableActivity"
+            android:exported="false">
+
+        </activity>
+
+        <activity
+            android:name="com.restaurant.exam.ui.manage_staff.ManageStaffActivity"
+            android:exported="false">
+
+        </activity>
+
+        <activity
+            android:name="com.restaurant.exam.ui.detail_food.DetailFoodActivity"
+            android:exported="false">
+
+        </activity>
+
+        <activity
+            android:name="com.restaurant.exam.ui.detail_food.AddFoodActivity"
+            android:exported="false">
+
+        </activity>
+
+        <activity
+            android:name="com.restaurant.exam.ui.manage.ManageRestaurantActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name="com.restaurant.exam.ui.confirm_bill.ConfirmActivity"
+            android:exported="false">
+
+        </activity>
+
+        <activity
+            android:name="com.restaurant.exam.ui.intro.IntroActivity"
+            android:exported="false">
+
+        </activity>
+
+        <activity
+            android:name="com.restaurant.exam.ui.main.MainActivity"
+            android:exported="false">
+
+        </activity>
+
+        <activity
+            android:name="com.restaurant.exam.ui.main.MainActivityStaff"
             android:exported="false">
 
         </activity>
@@ -49,7 +99,7 @@
 <!--            android:exported="false">-->
 <!--        </activity>-->
         <activity
-            android:name="com.restaurant.exam.ui.main.MainActivity"
+            android:name="com.restaurant.exam.ui.splash.SplashActivity"
             android:exported="true"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
             <intent-filter>

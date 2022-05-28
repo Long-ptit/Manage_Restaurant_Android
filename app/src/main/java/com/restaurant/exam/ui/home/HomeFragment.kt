@@ -3,6 +3,7 @@ package com.restaurant.exam.ui.home
 import android.content.Intent
 import android.util.Log
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +17,7 @@ import com.google.firebase.ktx.Firebase
 import restaurant.exam.R
 import com.restaurant.exam.base.BaseFragment
 import com.restaurant.exam.data.model.Floor
+import com.restaurant.exam.data.model.Food
 import com.restaurant.exam.data.model.TableFirebase
 import com.restaurant.exam.network.Api
 import com.restaurant.exam.ui.home.adapter.FloorAdapter
@@ -31,18 +33,18 @@ class HomeFragment :
     FloorAdapter.IClick,
     TableAdapter.IClick {
 
-    private lateinit var mAdapter : TableAdapter
-    private lateinit var mAdapterFloor : FloorAdapter
+    private lateinit var mAdapter: TableAdapter
+    private lateinit var mAdapterFloor: FloorAdapter
     private var idFloor: Int = 0
-    val database = Firebase.database("https://restaurant-dd83b-default-rtdb.firebaseio.com/").reference
-    var valueEventListener: ValueEventListener? = null
+
 
     override fun getContentLayout(): Int {
         return R.layout.fragment_home
     }
 
     override fun initViewModel() {
-        viewModel = ViewModelProvider(this, ViewModelFactory(requireContext()))[HomeViewModel::class.java]
+        viewModel =
+            ViewModelProvider(this, ViewModelFactory(requireContext()))[HomeViewModel::class.java]
     }
 
     override fun initView() {
@@ -61,29 +63,41 @@ class HomeFragment :
             )
         )
         //viewModel.saveToFirebase()
-        viewModel.getFloorByRes(1)
-
+        viewModel.getFloorByRes(viewModel.getIdRes())
         mAdapterFloor = FloorAdapter(this)
         binding.rvcFloor.adapter = mAdapterFloor
-        binding.rvcFloor.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL , false)
+        binding.rvcFloor.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 
     }
 
-    override fun initListener() {
+    override fun onResume() {
+        super.onResume()
+        Log.d("ptit", "onResume: ")
+        viewModel.getFloorByRes(viewModel.getIdRes())
+    }
 
+    override fun initListener() {
     }
 
     override fun observerLiveData() {
 
-      viewModel.apply {
+        viewModel.apply {
             floorResponse.observe(this@HomeFragment) {
-                if(it != null) {
+                if (it != null) {
                     mAdapterFloor.setList(it)
-                    Log.d("ptit", "observerLiveData: $it")
+                    if (it.isNotEmpty()) {
+                        idFloor = it.get(0).id!!
+                        viewModel.getTable(it.get(0).id!!) {
+                            mAdapter.setData(it)
+                        }
+                    } else {
+                        Toast.makeText(context, "Bạn cần thêm 1 tầng", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-      }
+        }
     }
 
     override fun onClick(floor: Floor) {
@@ -95,34 +109,12 @@ class HomeFragment :
     }
 
     override fun onClick(table: TableFirebase) {
-        var intent =  Intent(
+        var intent = Intent(
             context,
             DetailTableActivity::class.java
         )
-//        intent.putExtra("PRODUCTID", data.id)
+        intent.putExtra("id_floor", idFloor)
+        intent.putExtra("id_table", table.id)
         startActivity(intent)
     }
-
-    fun getTable(id: Int, callbackSuccess: (list: ArrayList<TableFirebase>) -> Unit){
-        if (valueEventListener != null) {
-            database.removeEventListener(valueEventListener!!)
-            Log.d("ptit", "delete listener: ")
-        }
-        val tableFirebase = database.child("restaurant").child("1").child(id.toString())
-        valueEventListener = tableFirebase.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val listWishlistAdd = ArrayList<TableFirebase>()
-                for (dataSnapshot in snapshot.children) {
-                    val wishlistAdd = dataSnapshot.getValue(TableFirebase::class.java)
-                    wishlistAdd?.let { listWishlistAdd.add(it) }
-                    Log.d("ptit", dataSnapshot.toString())
-                }
-                callbackSuccess.invoke(listWishlistAdd)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                tableFirebase.removeEventListener(this)
-            }
-        })}
-
 }

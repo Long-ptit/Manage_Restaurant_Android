@@ -1,19 +1,16 @@
 package com.restaurant.exam.network
 
-import com.restaurant.exam.data.model.Floor
-import com.restaurant.exam.data.model.Food
-import com.restaurant.exam.data.model.Restaurant
+import com.restaurant.exam.data.model.*
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 
 interface Api {
 
-   @POST("api/v1/restaurant/loginRes")
-   fun login(@Body request: Restaurant): Observable<Restaurant>
+   @POST("api/v1/staff/loginStaff")
+   fun login(@Body request: Staff): Observable<Staff>
 
    @GET("api/v1/restaurant/getById/1")
    fun getId(): Observable<Restaurant>
@@ -24,5 +21,39 @@ interface Api {
 
    @GET("api/v1/food/getFoodByIdRes/{id}")
    fun getFood(@Path("id") id: Int): Observable<List<Food>>
+
+   @GET("api/v1/table/getById/{id}")
+   fun getTableByIdFloor(@Path("id") id: Int): Observable<List<TableRestaurant>>
+
+   @GET("api/v1/staff/getByIdRes/{id}")
+   fun getStaffByIdRes(@Path("id") id: Int): Observable<List<Staff>>
+
+   @POST("api/v1/bill/saveItem")
+   fun save(@Body data: FoodBill): Observable<Bill>
+
+   @POST("api/v1/floor/save")
+   fun saveFloor(@Body data: Floor): Observable<Floor>
+
+   @POST("api/v1/table/save")
+   fun saveTable(@Body data: TableRestaurant): Observable<TableRestaurant>
+
+   @Multipart
+   @POST("api/v1/food/saveFood")
+   fun saveFood(
+      @Part img: MultipartBody.Part,
+      @Part("id_res") id_res: RequestBody,
+      @Part("id_cate") id_cate: RequestBody,
+      @Part("name_food") name_food: RequestBody,
+      @Part("price_food") price_food: RequestBody,
+      @Part("description_food") description_food: RequestBody,
+   )
+   : Observable<Food>
+
+   @POST("api/v1/staff/saveStaff")
+   fun saveStaff(@Body data: Staff): Observable<Staff>
+
+
+
+
 
 }
