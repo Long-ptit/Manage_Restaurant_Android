@@ -1,7 +1,9 @@
 package com.restaurant.exam.ui.login
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.messaging.FirebaseMessaging
 import com.restaurant.exam.data.DataManager
 import com.restaurant.exam.data.model.Food
 import com.restaurant.exam.data.model.Restaurant
@@ -49,35 +51,12 @@ class LoginViewModel : BaseViewModel() {
             )
     }
 
-//    fun setStart(isStart: Boolean) {
-//        dataManager.save(PREF_START, isStart)
-//    }
-//
-//    fun isStart(): Boolean {
-//        return dataManager.getBoolean(PREF_START)
-//    }
-
-    val getResponse = MutableLiveData<Restaurant>()
-    fun getRestarant(getRequest: Restaurant) {
-        api.getId()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { onRetrievePostListStart() }
-            .doOnTerminate { onRetrievePostListFinish() }
-            .subscribe(
-                { result ->
-                    if (result != null) {
-//                        result.data?.id?.let { dataManager.save(PREF_USER_ID, it) }
-//                        dataManager.save(PREF_USER_NAME, result?.data?.hoTen)
-//                        dataManager.save(PREF_PHONE_NUMBER, result?.data?.soDienThoai)
-//                        dataManager.save(PREF_ADDRESS, result?.data?.diaChi)
-                    }
-                    getResponse.postValue(result)
-                },
-                { throwable ->
-                    handleApiError(throwable)
-                }
-            )
+    fun initFirebase() {
+        FirebaseMessaging.getInstance().token
+            .addOnSuccessListener { token: String ->
+                FirebaseUtils.saveTokenToFirebase(token, dataManager.getInt(PREF_USER_ID))
+                Log.d("DEVICE_TOKEN", token)
+            }
     }
 
     fun setStart(isStart: Boolean) {

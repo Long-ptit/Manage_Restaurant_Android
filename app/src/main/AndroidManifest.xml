@@ -20,26 +20,33 @@
         tools:replace="android:allowBackup"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute" >
 
+        <service
+            android:name="com.restaurant.exam.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
         <activity
             android:name="com.restaurant.exam.ui.table.DetailTableActivity"
             android:exported="false">
         </activity>
         <activity
-<<<<<<< HEAD
-            android:name="com.restaurant.exam.ui.login.LoginActivity"
-=======
-            android:name="com.restaurant.exam.ui.news.NewsActivity"
->>>>>>> 528dead62eb55bea155acbcc9e1a7aad2f1d617d
-            android:exported="false">
-
+            android:name="com.restaurant.exam.ui.login.LoginActivity" >
         </activity>
+
+        <activity
+            android:name="com.restaurant.exam.ui.detail_statistic.DetailStatisticActivity" >
+        </activity>
+
 
         <activity
             android:name="com.restaurant.exam.ui.manage_staff.AddStaffActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name="com.restaurant.exam.ui.table.DetailTableActivity"
+            android:name="com.restaurant.exam.ui.news.NewsActivity"
             android:exported="false">
         </activity>
 
@@ -48,8 +55,8 @@
         <activity
             android:name="com.restaurant.exam.ui.add_food_table.AddFoodTableActivity"
             android:exported="false">
-
         </activity>
+
 
         <activity
             android:name="com.restaurant.exam.ui.manage_staff.ManageStaffActivity"

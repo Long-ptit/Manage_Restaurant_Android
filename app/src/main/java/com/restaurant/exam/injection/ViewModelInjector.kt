@@ -3,6 +3,7 @@ package com.restaurant.exam.injection
 import com.restaurant.exam.ui.add_food_table.AddFoodTableViewModel
 import com.restaurant.exam.ui.confirm_bill.ConfirmViewModel
 import com.restaurant.exam.ui.detail_food.DetailFoodViewModel
+import com.restaurant.exam.ui.detail_statistic.DetailStatisticViewModel
 import com.restaurant.exam.ui.login.LoginViewModel
 import com.restaurant.exam.ui.home.HomeViewModel
 import com.restaurant.exam.ui.main.MainViewModel
@@ -30,6 +31,7 @@ interface ViewModelInjector {
     fun inject(detailFoodViewModel: DetailFoodViewModel)
     fun inject(manageRestaurantViewModel: ManageRestaurantViewModel)
     fun inject(manageStaffViewModel: ManageStaffViewModel)
+    fun inject(detailStatisticViewModel: DetailStatisticViewModel)
     @Component.Builder
     interface Builder {
         fun build(): ViewModelInjector

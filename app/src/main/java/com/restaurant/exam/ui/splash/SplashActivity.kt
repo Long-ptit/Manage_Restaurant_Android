@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import restaurant.exam.R
 import com.restaurant.exam.base.BaseActivity
+import com.restaurant.exam.data.firebase.NotificationSend
 import com.restaurant.exam.ui.intro.IntroActivity
 import com.restaurant.exam.ui.login.LoginActivity
 import com.restaurant.exam.ui.login.LoginViewModel
@@ -13,6 +14,7 @@ import restaurant.exam.databinding.LayoutSplashBinding
 import com.restaurant.exam.ui.main.MainActivity
 import com.restaurant.exam.ui.main.MainActivityStaff
 import com.restaurant.exam.ui.main.MainViewModel
+import com.restaurant.exam.utils.FirebaseUtils
 import com.restaurant.exam.view_model.ViewModelFactory
 
 
@@ -32,6 +34,12 @@ class SplashActivity : BaseActivity<LoginViewModel, LayoutSplashBinding>() {
     }
 
     override fun initListener() {
+        FirebaseUtils.pushNotification(
+            1,NotificationSend(
+                title = "Trinh Xuan Long",
+                body = "Dep trai"
+            ), {}, {}
+        )
         handler = Handler()
         handler.postDelayed({
             if (!viewModel.isStart()) {
@@ -41,6 +49,7 @@ class SplashActivity : BaseActivity<LoginViewModel, LayoutSplashBinding>() {
             } else {
                 var intent: Intent
                 if (viewModel.checkUserLogin()) {
+                    viewModel.initFirebase()
                     if (viewModel.checkIsTaff()) {
                         intent =  Intent(
                             this,

@@ -1,16 +1,16 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.prolificinteractive:material-calendarview:1.6.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-3/ab39e9bcdf4ed7dc1af3f0c2bf683bfc/transformed/jetified-material-calendarview-1.6.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/52511b6af25702a8ee2d56e541e5b414/transformed/jetified-material-calendarview-1.6.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-3/ab39e9bcdf4ed7dc1af3f0c2bf683bfc/transformed/jetified-material-calendarview-1.6.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-3/ab39e9bcdf4ed7dc1af3f0c2bf683bfc/transformed/jetified-material-calendarview-1.6.0/res" />
-      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-3/ab39e9bcdf4ed7dc1af3f0c2bf683bfc/transformed/jetified-material-calendarview-1.6.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/52511b6af25702a8ee2d56e541e5b414/transformed/jetified-material-calendarview-1.6.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/52511b6af25702a8ee2d56e541e5b414/transformed/jetified-material-calendarview-1.6.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/52511b6af25702a8ee2d56e541e5b414/transformed/jetified-material-calendarview-1.6.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.prolificinteractive/material-calendarview/1.6.0/530e0b51995a321a2d486b9623b26181f5c93b30/material-calendarview-1.6.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.prolificinteractive/material-calendarview/1.6.0/530e0b51995a321a2d486b9623b26181f5c93b30/material-calendarview-1.6.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

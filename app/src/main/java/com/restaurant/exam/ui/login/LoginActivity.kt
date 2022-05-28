@@ -42,11 +42,7 @@ class LoginActivity : BaseActivity<LoginViewModel, LayoutLoginBinding>() {
         viewModel.apply {
             loginResponse.observe(this@LoginActivity, androidx.lifecycle.Observer {
                 if (it != null) {
-//                    showError(it.status)
-//                    if (it.data != null) {
-//                        startActivity(MainActivity.getIntent(this@LoginActivity))
-//                        finish()
-//                    }
+                    viewModel.initFirebase()
                     if (it.name != null ) {
                         showError("Xin chào: " + it.name!!)
                     }
