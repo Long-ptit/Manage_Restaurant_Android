@@ -73,9 +73,13 @@
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.37552083333333336" />
         <entry key="app/src/main/res/layout/fragment_wishlist.xml" value="0.37552083333333336" />
         <entry key="app/src/main/res/layout/item_banner.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/item_floor.xml" value="0.3359375" />
         <entry key="app/src/main/res/layout/item_news.xml" value="0.3854166666666667" />
         <entry key="app/src/main/res/layout/item_order.xml" value="0.3854166666666667" />
         <entry key="app/src/main/res/layout/item_product.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/item_statistic.xml" value="0.3359375" />
+        <entry key="app/src/main/res/layout/layout_add_food_table.xml" value="0.3359375" />
+        <entry key="app/src/main/res/layout/layout_detail_table.xml" value="0.3359375" />
         <entry key="app/src/main/res/layout/layout_error_dialog.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/layout_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_main.xml" value="0.20946960449218752" />
